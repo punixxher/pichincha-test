@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './presentation/modules/home/home.component';
 import {SharedModule} from "./presentation/shared/components/shared.module";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {RequestService} from "./infraestructure/dataSources/http/request.service";
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import {RequestService} from "./infraestructure/dataSources/http/request.service
     SharedModule,
     HttpClientModule,
   ],
-  providers: [RequestService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

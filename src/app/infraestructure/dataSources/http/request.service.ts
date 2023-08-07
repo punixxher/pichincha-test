@@ -2,40 +2,32 @@ import {ApiResponse, AsyncApiResponse, RequestProps} from "./request.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../presentation/environments/environment";
 import {inject, Inject, Injectable} from "@angular/core";
+import axios from "axios";
 
 
-@Injectable({
-  providedIn: "root"
-})
+const httpOptions = {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
-export class RequestService {
-
-  private httpClient = inject(HttpClient)
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-
-  SendRequest = async <T>(
-    props: RequestProps
-  ): Promise<AsyncApiResponse<T>> => {
-    let response: any = null
-    try {
-      if (props.get) {
-        response = this.httpClient.get(environment.apiUrl + props.get.path, {headers: this.httpOptions.headers});
-      }
-      if (props.post) {
-        response = this.httpClient.post(environment.apiUrl + props.post.path, props.post.body, {headers: this.httpOptions.headers});
-      }
-    } catch (e) {
-      debugger
-      response = e
+export const SendRequest = async <T>(
+  props: RequestProps
+): Promise<AsyncApiResponse<T>> => {
+  let response: any = null
+  const axiosRequest = axios.create(httpOptions)
+  try {
+    if (props.get) {
+      response = axiosRequest.get(environment.apiUrl + props.get.path);
     }
-    return response
+    if (props.post) {
+      response = axiosRequest.post(environment.apiUrl + props.post.path, props.post.body);
+    }
+  } catch (e) {
+    debugger
+    response = e
   }
-
+  return response
 }
 
 

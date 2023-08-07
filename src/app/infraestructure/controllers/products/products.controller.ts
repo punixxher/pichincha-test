@@ -30,7 +30,6 @@ export class ProductsController {
 
   static async setProduct(product: ProductsEntity): AsyncApiResponse<any> {
     try {
-      debugger
       return await SetProduct(this.productsRepository, product)
     } catch (e) {
       return makeError(-1, 'Unknown Error', null, e)
