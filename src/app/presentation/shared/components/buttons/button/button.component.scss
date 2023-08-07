@@ -1,0 +1,10 @@
+@import "src/styles";
+
+button{
+  background-color: $main-color;
+  cursor: pointer;
+  padding: 17px 20px;
+  color: $sec-color;
+  border:  transparent;
+  border-radius: 5px;
+}

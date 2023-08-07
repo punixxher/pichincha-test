@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+$main-color: #ffdd00;
+$sec-color: #1b2d54;
+$assetsRoutes: '/app/presentation/assets/';
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+}

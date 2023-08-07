@@ -1,0 +1,65 @@
+<div class="headerTableContent" *ngIf="header">
+  <input type="text" placeholder="Buscar"/>
+  <app-button label="Agregar" (btnAction)="actionAdd()"></app-button>
+</div>
+
+<div class="tableContainer">
+  <div class="table">
+    <table style="padding: 20px">
+      <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nombre del producto</th>
+        <th>
+          <div class="contentTable">Descripción
+            <div class="icon"></div>
+          </div>
+        </th>
+        <th>
+          <div class="contentTable">Fecha de liberación
+            <div class="icon"></div>
+          </div>
+        </th>
+        <th>
+          <div class="contentTable">Fecha de reestructuración
+            <div class="icon"></div>
+          </div>
+        </th>
+        <th>
+          <div class="contentTable">Acciones</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><img [src]="assetRoutes + 'profile-circle-svgrepo-com.svg'" height="40px"/></td>
+        <td>asdasda ad asas</td>
+        <td>asdasda ad asas</td>
+        <td>asdasda ad asas</td>
+        <td>asdasda ad asas</td>
+        <td>
+          <img (click)="openMenu()" class="selectable" [src]="assetRoutes + 'list-menu-music-svgrepo-com.svg'"
+               height="18px"/>
+          <ul class="menuActions">
+            <li><img [src]="assetRoutes + 'pencil-file-svgrepo-com.svg'" width="20px">
+              <div>Editar</div>
+            </li>
+            <li><img [src]="assetRoutes + 'delete-clipboard-svgrepo-com.svg'" width="20px">
+              <div>Eliminar</div>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      5 Resultados
+      <select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    </div>
+  </div>
+</div>

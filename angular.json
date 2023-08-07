@@ -25,7 +25,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/app/presentation/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -93,7 +93,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/app/presentation/assets"
             ],
             "styles": [
               "src/styles.scss"
@@ -103,5 +103,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "3c185a74-ac50-4d17-8daf-7331bafd635a"
   }
 }
