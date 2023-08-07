@@ -6,6 +6,7 @@ import { TableOptionsComponent } from './table/table-options/table-options.compo
 
 
 
+
 @NgModule({
   declarations: [
     TableComponent,
@@ -15,6 +16,7 @@ import { TableOptionsComponent } from './table/table-options/table-options.compo
   imports: [
     CommonModule
   ],
+
   exports: [
     TableComponent,
     ButtonComponent

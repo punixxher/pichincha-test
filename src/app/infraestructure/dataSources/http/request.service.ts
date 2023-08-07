@@ -1,17 +1,24 @@
 import {ApiResponse, AsyncApiResponse, RequestProps} from "./request.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../presentation/environments/environment";
-import {inject} from "@angular/core";
+import {inject, Inject, Injectable} from "@angular/core";
+
+
+@Injectable({
+  providedIn: "root"
+})
 
 export class RequestService {
-  protected static httpClient = inject(HttpClient);
-  static httpOptions = {
+
+  private httpClient = inject(HttpClient)
+
+  private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
 
-  static sendRequest = async <T>(
+  SendRequest = async <T>(
     props: RequestProps
   ): Promise<AsyncApiResponse<T>> => {
     let response: any = null
@@ -23,11 +30,14 @@ export class RequestService {
         response = this.httpClient.post(environment.apiUrl + props.post.path, props.post.body, {headers: this.httpOptions.headers});
       }
     } catch (e) {
+      debugger
       response = e
     }
     return response
   }
+
 }
+
 
 export function makeError(
   code: number,
