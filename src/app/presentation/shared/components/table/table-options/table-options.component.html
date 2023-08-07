@@ -1,0 +1,12 @@
+<div>
+  <img #btnShowMenu (click)="openMenu()" class="selectable" [src]="assetRoutes + 'list-menu-music-svgrepo-com.svg'"
+       height="18px"/>
+  <ul #menuActions class="menuActions" >
+    <li (click)="editItem(id)"><img [src]="assetRoutes + 'pencil-file-svgrepo-com.svg'" width="20px">
+      <div>Editar</div>
+    </li>
+    <li (click)="deleteItem(id)"><img [src]="assetRoutes + 'delete-clipboard-svgrepo-com.svg'" width="20px">
+      <div>Eliminar</div>
+    </li>
+  </ul>
+</div>

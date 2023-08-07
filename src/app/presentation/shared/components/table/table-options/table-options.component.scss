@@ -1,0 +1,26 @@
+
+.menuActions{
+  display: none;
+  list-style-type: none;
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ebebec;
+  padding: 30px;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: -20px;
+  margin-right: -120px;
+  li{
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    img{
+      margin-right: 15px;
+    }
+
+  }
+  li:not(:first-child) {
+    margin-top: 20px;
+  }
+}

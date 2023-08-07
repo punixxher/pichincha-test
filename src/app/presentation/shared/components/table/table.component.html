@@ -31,6 +31,7 @@
       </tr>
       </thead>
       <tbody>
+
       <tr>
         <td><img [src]="assetRoutes + 'profile-circle-svgrepo-com.svg'" height="40px"/></td>
         <td>asdasda ad asas</td>
@@ -38,18 +39,10 @@
         <td>asdasda ad asas</td>
         <td>asdasda ad asas</td>
         <td>
-          <img (click)="openMenu()" class="selectable" [src]="assetRoutes + 'list-menu-music-svgrepo-com.svg'"
-               height="18px"/>
-          <ul class="menuActions">
-            <li><img [src]="assetRoutes + 'pencil-file-svgrepo-com.svg'" width="20px">
-              <div>Editar</div>
-            </li>
-            <li><img [src]="assetRoutes + 'delete-clipboard-svgrepo-com.svg'" width="20px">
-              <div>Eliminar</div>
-            </li>
-          </ul>
+          <app-table-options [id]="1"></app-table-options>
         </td>
       </tr>
+
       </tbody>
     </table>
     <div class="pagination">
