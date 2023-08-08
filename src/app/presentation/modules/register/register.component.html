@@ -4,7 +4,7 @@
     <div class="frmContent">
       <h1>Formulario de Registro</h1>
       <hr class="solid">
-      <form [formGroup]="formDataComponent" (ngSubmit)="onSubmit()">
+      <form [formGroup]="formDataComponent" >
         <div class="row">
           <div class="col"><label>ID</label><input (blur)="validateValue('id')" id="id" type="text" formControlName="id"/></div>
           <div class="col"><label>Nombre</label><input (blur)="validateValue('name')" id="name" type="text" formControlName="name"/></div>
@@ -17,10 +17,9 @@
         <div class="row">
           <div class="col"><label>Fecha Libración</label><input (change)="validateValue('dateinit')" (blur)="validateValue('dateinit')" min="{{minDate | date:'yyyy-MM-dd'}}" id="dateinit" type="date" formControlName="dateinit"/>
           </div>
-          <div class="col"><label>Fecha Revisión</label><input (blur)="validateValue('dateEnd')" id="dateEnd" type="text" formControlName="dateEnd"/>
+          <div class="col"><label>Fecha Revisión</label><input (blur)="validateValue('dateEnd')"   id="dateEnd" type="date" formControlName="dateEnd"/>
           </div>
         </div>
-
         <div class="groupActions">
           <app-button typeBtn="secondary" (btnAction)="reset()">Reiniciar</app-button>
           <app-button (btnAction)="send()" [disabled]="disabledSend">Enviar</app-button>

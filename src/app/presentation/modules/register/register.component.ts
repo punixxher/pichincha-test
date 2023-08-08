@@ -3,6 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DEBUG} from "@angular/compiler-cli/src/ngtsc/logging/src/console_logger";
 import {from} from "rxjs";
 import {addYears} from "../../shared/functions/functions.shared";
+import {ProductsEntity} from "../../../domain/entities/products/products.entity";
+import {ProductsController} from "../../../infraestructure/controllers/products/products.controller";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -26,7 +29,8 @@ export class RegisterComponent {
   public formDataComponent: any = this.formBuilder.group(this.controlsGroup)
   minDate = new Date()
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+  }
 
   validateValue(event: any) {
     const data = this.formDataComponent.controls[event]
@@ -68,17 +72,17 @@ export class RegisterComponent {
       element.classList.remove('invalidInput')
     }
 
-    if(event === 'dateinit'){
+    if (event === 'dateinit') {
       const date = new Date(this.formDataComponent.controls['dateinit'].value)
       const newDate = addYears(date, 1)
-      this.formDataComponent.controls['dateEnd'].setValue(newDate.toLocaleDateString('en-GB'))
+      this.formDataComponent.controls['dateEnd'].setValue(newDate.toISOString().split('T')[0])
     }
 
-    if(!this.formDataComponent.controls['dateEnd'].value){
+    if (!this.formDataComponent.controls['dateEnd'].value) {
       return
     }
 
-    this.formDataComponent.status ===  'INVALID'  ? this.disabledSend = true :  this.disabledSend = false
+    this.formDataComponent.status === 'INVALID' ? this.disabledSend = true : this.disabledSend = false
 
   }
 
@@ -91,7 +95,7 @@ export class RegisterComponent {
 
   reset() {
     this.formDataComponent.reset()
-    Object.keys(this.formDataComponent.controls).map((item: any)=>{
+    Object.keys(this.formDataComponent.controls).map((item: any) => {
       const itemError: any = document.getElementById(
         item + 'Error'
       )
@@ -103,11 +107,20 @@ export class RegisterComponent {
   }
 
 
-  send() {
-
+  async send() {
+    const request: ProductsEntity = {
+      date_release: this.formDataComponent.controls['dateinit'].value,
+      date_revision: this.formDataComponent.controls['dateEnd'].value,
+      description: this.formDataComponent.controls['description'].value,
+      id: this.formDataComponent.controls['id'].value,
+      logo: this.formDataComponent.controls['logo'].value,
+      name: this.formDataComponent.controls['name'].value
+    }
+    const response = await ProductsController.setProduct(request)
+    if(response.data){
+      void this.router.navigate(['/'])
+    }
   }
 
-  onSubmit() {
-  }
 
 }
