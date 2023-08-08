@@ -30,8 +30,12 @@ export const SendRequest = async <T>(
       const r: any = await axiosRequest.put(environment.apiUrl + props.put.path, props.put.body);
       response = r?.data || r
     }
+    if (props.delete) {
+      const r: any = await axiosRequest.delete(environment.apiUrl + props.delete.path);
+      response = r?.data || r
+    }
   } catch (e) {
-    response = e
+    throw(e)
   }
   return makeResponse<T>(response)
 }

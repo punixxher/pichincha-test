@@ -1,5 +1,5 @@
 <div class="headerTableContent" *ngIf="header">
-  <input type="text" placeholder="Buscar"/>
+  <input type="text" placeholder="Buscar" (change)="onChangeSearch($event)" (keydown)="onChangeSearch($event)" [formControl]="searchInput"/>
   <app-button (btnAction)="actionAdd()">Agregar</app-button>
 </div>
 

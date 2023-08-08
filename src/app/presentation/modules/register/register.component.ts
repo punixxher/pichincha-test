@@ -132,7 +132,7 @@ export class RegisterComponent {
     }else {
       response = await ProductsController.setProduct(request)
     }
-    debugger
+
     if(response.data){
       void this.router.navigate(['/'])
     }

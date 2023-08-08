@@ -8,6 +8,12 @@ import {SendRequest} from "../../dataSources/http/request.service";
 export class ProductsRepositoryImp implements ProductsRepository{
 
   async deleteProduct(id: string) {
+    const request: RequestProps = {
+      delete: {
+        path: `/products?id=${id}`,
+      }
+    }
+    return await SendRequest(request);
   }
 
   async getProducts() {

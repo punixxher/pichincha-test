@@ -5,5 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalService {
   rowEditData: any = {}
+  originalRows: any = []
   constructor() { }
 }

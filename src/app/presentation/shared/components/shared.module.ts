@@ -4,6 +4,7 @@ import {TableComponent} from "./table/table.component";
 import { ButtonComponent } from './buttons/button/button.component';
 import { TableOptionsComponent } from './table/table-options/table-options.component';
 import {GlobalService} from "../services/global.service";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -15,7 +16,8 @@ import {GlobalService} from "../services/global.service";
     TableOptionsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [GlobalService],
 

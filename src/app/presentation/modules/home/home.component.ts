@@ -45,11 +45,17 @@ export class HomeComponent implements OnInit {
     }
     if(response.data) {
       this.dataTable.rows = response.data
+      this.globalService.originalRows = this.dataTable.rows
     }
   }
 
-  deleteMenuAction($event: any) {
-    debugger
+  async deleteMenuAction($event: any) {
+    const response = await ProductsController.deleteProduct($event)
+    if(response.error){
+      return
+    }
+    if(response.data){
+    }
   }
 
   addMenuAction($event: any) {

@@ -2,7 +2,12 @@ import {ProductsRepositoryImp} from "../../repositories/products/products.reposi
 
 import {ProductsEntity} from "../../../domain/entities/products/products.entity";
 import {AsyncApiResponse} from "../../dataSources/http/request.model";
-import {GetProducts, SetProduct, UpdateProduct} from "../../../application/usecases/products/products.usecases";
+import {
+  DeleteProduct,
+  GetProducts,
+  SetProduct,
+  UpdateProduct
+} from "../../../application/usecases/products/products.usecases";
 import {makeError} from "../../dataSources/http/request.service";
 
 
@@ -12,11 +17,11 @@ export class ProductsController {
   static productsRepository = new ProductsRepositoryImp()
 
 
-  static async deleteProduct(id: string) {
+  static async deleteProduct(id: string): AsyncApiResponse<any> {
     try {
-
+      return await DeleteProduct(this.productsRepository, id)
     } catch (e) {
-
+      return makeError(-1, 'Unknown Error', null, e)
     }
   }
 
