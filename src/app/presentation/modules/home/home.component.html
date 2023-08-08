@@ -1,7 +1,12 @@
 <div class="content">
   <app-header></app-header>
   <div class="main">
-    <app-table (deleteMenuAction)="deleteMenuAction($event)" (addMenuAction)="addMenuAction($event)"
-               [tableData]="dataTable" [header]="true" (addAction)="addProduct()"></app-table>
+    <app-table
+      (deleteMenuAction)="deleteMenuAction($event)"
+      (addMenuAction)="addMenuAction($event)"
+      [tableData]="dataTable"
+      [header]="true"
+      (addAction)="addProduct()">
+    </app-table>
   </div>
 </div>

@@ -11,8 +11,6 @@ import {GlobalService} from "../../shared/services/global.service";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  assetRoutes = AppSettings.defaultAssetsRoute
   dataTable = {
     actions: true,
     columns: [
@@ -24,12 +22,9 @@ export class HomeComponent implements OnInit {
     ],
     rows: []
   }
-
-
   constructor(private router: Router, private globalService: GlobalService) {
 
   }
-
   ngOnInit(): void {
     void this.loadData()
   }

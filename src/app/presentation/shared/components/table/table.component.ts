@@ -90,8 +90,4 @@ export class TableComponent implements OnInit, OnChanges {
     return response
   };
 
-  openMenu() {
-    this.menuActions.nativeElement.style.display = 'block'
-  }
-
 }
