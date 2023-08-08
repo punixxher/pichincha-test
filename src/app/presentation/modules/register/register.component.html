@@ -15,7 +15,7 @@
           <div class="col"><label>Logo</label><input id="logo"  (blur)="validateValue('logo')" type="text" formControlName="logo"/></div>
         </div>
         <div class="row">
-          <div class="col"><label>Fecha Libración</label><input (blur)="validateValue('dateinit')" min="{{minDate | date:'yyyy-MM-dd'}}" id="dateinit" type="date" formControlName="dateinit"/>
+          <div class="col"><label>Fecha Libración</label><input (change)="validateValue('dateinit')" (blur)="validateValue('dateinit')" min="{{minDate | date:'yyyy-MM-dd'}}" id="dateinit" type="date" formControlName="dateinit"/>
           </div>
           <div class="col"><label>Fecha Revisión</label><input (blur)="validateValue('dateEnd')" id="dateEnd" type="text" formControlName="dateEnd"/>
           </div>
@@ -23,7 +23,7 @@
 
         <div class="groupActions">
           <app-button typeBtn="secondary" (btnAction)="reset()">Reiniciar</app-button>
-          <app-button (btnAction)="send()" [disabled]="true">Enviar</app-button>
+          <app-button (btnAction)="send()" [disabled]="disabledSend">Enviar</app-button>
         </div>
       </form>
     </div>
