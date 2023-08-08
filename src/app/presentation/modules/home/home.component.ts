@@ -1,6 +1,6 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppSettings} from "../../shared/appsettings/appsetting";
-import {ProductsController} from "../../../infraestructure/controllers/products/products.controller";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   assetRoutes = AppSettings.defaultAssetsRoute
 
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
 
 
   async addProduct() {
-    const request = {
+    void this.router.navigate(['/registro'])
+    /*const request = {
       id: 'tere',
       name: 'dasasdasd',
       description: 'adssadadsads',
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
     }
 
 
-    const response = await ProductsController.setProduct(request)
+    const response = await ProductsController.setProduct(request)*/
 
   }
 

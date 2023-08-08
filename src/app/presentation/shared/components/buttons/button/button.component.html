@@ -1,1 +1,3 @@
-<button (click)="actionClick()">{{label}}</button>
+<button [ngClass]="typeBtn" (click)="actionClick()">
+  <ng-content></ng-content>
+</button>

@@ -1,5 +1,6 @@
 $main-color: #ffdd00;
 $sec-color: #1b2d54;
+$sec-background: #cdcfd6;
 $assetsRoutes: '/app/presentation/assets/';
 
 body {
@@ -12,3 +13,30 @@ body {
   cursor: pointer;
 }
 
+.main{
+  padding: 5%
+}
+
+label {
+  color: black;
+  display: block;
+  text-align:left ;
+}
+
+input{
+  border-radius: 5px;
+  height: 35px;
+  width: 200px;
+  border: 2px solid #ebebec;
+  margin-top: 5px;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+  border: 2px solid $main-color;
+
+}
+
+.d-flex {
+  display: flex;
+}

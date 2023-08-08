@@ -24,7 +24,6 @@ export const SendRequest = async <T>(
       response = axiosRequest.post(environment.apiUrl + props.post.path, props.post.body);
     }
   } catch (e) {
-    debugger
     response = e
   }
   return response
