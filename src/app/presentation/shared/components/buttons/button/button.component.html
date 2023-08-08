@@ -1,3 +1,3 @@
-<button [ngClass]="typeBtn" (click)="actionClick()">
+<button [class]="typeBtn" [class.disabledBtn]="disabled" (click)="actionClick()">
   <ng-content></ng-content>
 </button>

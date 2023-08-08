@@ -37,6 +37,13 @@ input:focus, textarea:focus, select:focus{
 
 }
 
-.d-flex {
-  display: flex;
+
+.invalidInput{
+    outline: none;
+    border: 1px solid red;
+}
+
+.txtError {
+  color: red;
+  font-size: 13px;
 }

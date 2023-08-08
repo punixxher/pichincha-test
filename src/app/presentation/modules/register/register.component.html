@@ -4,23 +4,28 @@
     <div class="frmContent">
       <h1>Formulario de Registro</h1>
       <hr class="solid">
-      <div class="row">
-        <div class="col"><label>ID</label><input type="text"/></div>
-        <div class="col"><label>Nombre</label><input type="text"/></div>
-      </div>
-      <div class="row">
-        <div class="col"><label>Descripción</label><input type="text"/></div>
-        <div class="col"><label>Logo</label><input type="text"/></div>
-      </div>
-      <div class="row">
-        <div class="col"><label>Fecha Libración</label><input type="text"/></div>
-        <div class="col"><label>Fecha Revisión</label><input type="text"/></div>
-      </div>
+      <form [formGroup]="formDataComponent" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col"><label>ID</label><input (blur)="validateValue('id')" id="id" type="text" formControlName="id"/></div>
+          <div class="col"><label>Nombre</label><input (blur)="validateValue('name')" id="name" type="text" formControlName="name"/></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Descripción</label><input (blur)="validateValue('description')" id="description" type="text" formControlName="description"/>
+          </div>
+          <div class="col"><label>Logo</label><input id="logo"  (blur)="validateValue('logo')" type="text" formControlName="logo"/></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Fecha Libración</label><input (blur)="validateValue('dateinit')" min="{{minDate | date:'yyyy-MM-dd'}}" id="dateinit" type="date" formControlName="dateinit"/>
+          </div>
+          <div class="col"><label>Fecha Revisión</label><input (blur)="validateValue('dateEnd')" id="dateEnd" type="text" formControlName="dateEnd"/>
+          </div>
+        </div>
 
-      <div class="groupActions">
-        <app-button typeBtn="secondary">Reiniciar</app-button>
-        <app-button>Enviar</app-button>
-      </div>
+        <div class="groupActions">
+          <app-button typeBtn="secondary" (btnAction)="reset()">Reiniciar</app-button>
+          <app-button (btnAction)="send()" [disabled]="true">Enviar</app-button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

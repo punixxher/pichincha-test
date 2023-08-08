@@ -17,3 +17,9 @@ button{
   background-color: $sec-background;
   color: $sec-color;
 }
+
+
+.disabledBtn {
+  opacity: 0.4;
+  cursor: auto;
+}

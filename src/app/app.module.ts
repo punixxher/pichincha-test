@@ -8,6 +8,7 @@ import {SharedModule} from "./presentation/shared/components/shared.module";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { RegisterComponent } from './presentation/modules/register/register.component';
 import { HeaderComponent } from './presentation/layout/header/header.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HeaderComponent } from './presentation/layout/header/header.component';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent],
 })
