@@ -20,7 +20,7 @@ export class ProductsController {
     }
   }
 
-  static async getProducts() {
+  static async getProducts(): AsyncApiResponse<any> {
     try {
         return await GetProducts(this.productsRepository)
     } catch (e) {

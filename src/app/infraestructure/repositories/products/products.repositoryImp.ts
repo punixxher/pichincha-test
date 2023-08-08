@@ -11,6 +11,12 @@ export class ProductsRepositoryImp implements ProductsRepository{
   }
 
   async getProducts() {
+    const request: RequestProps = {
+      get: {
+        path: `/products`
+      }
+    }
+    return await SendRequest(request);
   }
 
    async setProduct(product: ProductsEntity) {
@@ -25,6 +31,13 @@ export class ProductsRepositoryImp implements ProductsRepository{
   }
 
   async updateProduct(product: ProductsEntity) {
+    const request: RequestProps = {
+      put: {
+        path: `/products`,
+        body: product
+      }
+    }
+    return await SendRequest(request);
   }
 
 

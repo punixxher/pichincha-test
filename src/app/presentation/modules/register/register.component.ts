@@ -2,10 +2,12 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DEBUG} from "@angular/compiler-cli/src/ngtsc/logging/src/console_logger";
 import {from} from "rxjs";
-import {addYears} from "../../shared/functions/functions.shared";
+import {addYears, htmlToElement, validateDate} from "../../shared/functions/functions.shared";
 import {ProductsEntity} from "../../../domain/entities/products/products.entity";
 import {ProductsController} from "../../../infraestructure/controllers/products/products.controller";
 import {Router} from "@angular/router";
+import {GlobalService} from "../../shared/services/global.service";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -21,15 +23,28 @@ export class RegisterComponent {
       disabled: false
     }, [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
     logo: [{value: '', disabled: false}, [Validators.required]],
-    dateinit: [{value: '', disabled: false}, [Validators.required]],
-    dateEnd: [{value: null, disabled: true}, [Validators.required]],
+    date_release: [{value: '', disabled: false}, [Validators.required]],
+    date_revision: [{value: '', disabled: true}, [Validators.required]],
   }
   disabledSend = true
 
   public formDataComponent: any = this.formBuilder.group(this.controlsGroup)
   minDate = new Date()
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private globalService: GlobalService) {
+    if(this.router.url.split('/')[2] === 'editar' && (Object.keys(this.globalService.rowEditData).length > 0)) {
+      Object.keys(this.formDataComponent.controls).map((item: any)=>{
+        let value = this.globalService.rowEditData[item]
+        if(validateDate(new Date(value))){
+          value = formatDate(value, 'yyyy-MM-dd','en')
+        }
+        this.formDataComponent.controls[item].setValue(value)
+      })
+      this.disabledSend = false
+    }else {
+      if(!this.router.url.split('/')[2]) return
+      void this.router.navigate(['/'])
+    }
   }
 
   validateValue(event: any) {
@@ -57,7 +72,7 @@ export class RegisterComponent {
         element.insertAdjacentElement(
           'afterend',
           <Element>(
-            this.htmlToElement(
+            htmlToElement(
               `<span id="${event}Error" class="txtError">${txtError}</span>`
             )
           )
@@ -72,13 +87,13 @@ export class RegisterComponent {
       element.classList.remove('invalidInput')
     }
 
-    if (event === 'dateinit') {
-      const date = new Date(this.formDataComponent.controls['dateinit'].value)
+    if (event === 'date_release') {
+      const date = new Date(this.formDataComponent.controls['date_release'].value)
       const newDate = addYears(date, 1)
-      this.formDataComponent.controls['dateEnd'].setValue(newDate.toISOString().split('T')[0])
+      this.formDataComponent.controls['date_revision'].setValue(newDate.toISOString().split('T')[0])
     }
 
-    if (!this.formDataComponent.controls['dateEnd'].value) {
+    if (!this.formDataComponent.controls['date_revision'].value) {
       return
     }
 
@@ -86,12 +101,7 @@ export class RegisterComponent {
 
   }
 
-  htmlToElement(html: string) {
-    const template = document.createElement('template')
-    html = html.trim()
-    template.innerHTML = html
-    return template.content.firstChild
-  }
+
 
   reset() {
     this.formDataComponent.reset()
@@ -109,14 +119,20 @@ export class RegisterComponent {
 
   async send() {
     const request: ProductsEntity = {
-      date_release: this.formDataComponent.controls['dateinit'].value,
-      date_revision: this.formDataComponent.controls['dateEnd'].value,
+      date_release: this.formDataComponent.controls['date_release'].value,
+      date_revision: this.formDataComponent.controls['date_revision'].value,
       description: this.formDataComponent.controls['description'].value,
       id: this.formDataComponent.controls['id'].value,
       logo: this.formDataComponent.controls['logo'].value,
       name: this.formDataComponent.controls['name'].value
     }
-    const response = await ProductsController.setProduct(request)
+    let response: any = ''
+    if(this.router.url.split('/')[2] === 'editar') {
+      response = await ProductsController.updateProduct(request)
+    }else {
+      response = await ProductsController.setProduct(request)
+    }
+    debugger
     if(response.data){
       void this.router.navigate(['/'])
     }

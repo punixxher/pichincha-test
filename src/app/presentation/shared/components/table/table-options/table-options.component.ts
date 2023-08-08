@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {AppSettings} from "../../../appsettings/appsetting";
 
 @Component({
@@ -10,6 +10,8 @@ export class TableOptionsComponent implements OnInit {
   @ViewChild('btnShowMenu') btnShowMenu!: ElementRef
   @ViewChild('menuActions') menuActions!: ElementRef
   @Input() id: any = ''
+  @Output() deleteActions = new EventEmitter<any>()
+  @Output() addActions = new EventEmitter<any>()
   assetRoutes = AppSettings.defaultAssetsRoute
 
 
@@ -29,11 +31,11 @@ export class TableOptionsComponent implements OnInit {
   }
 
   editItem(id: any){
-    debugger
+    this.addActions.emit(id)
   }
 
   deleteItem(id: any){
-    debugger
+    this.deleteActions.emit(id)
   }
 
 }

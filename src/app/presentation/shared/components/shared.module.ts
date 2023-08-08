@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {TableComponent} from "./table/table.component";
 import { ButtonComponent } from './buttons/button/button.component';
 import { TableOptionsComponent } from './table/table-options/table-options.component';
+import {GlobalService} from "../services/global.service";
 
 
 
@@ -16,6 +17,7 @@ import { TableOptionsComponent } from './table/table-options/table-options.compo
   imports: [
     CommonModule
   ],
+  providers: [GlobalService],
 
   exports: [
     TableComponent,

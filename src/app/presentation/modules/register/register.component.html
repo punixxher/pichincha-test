@@ -15,9 +15,9 @@
           <div class="col"><label>Logo</label><input id="logo"  (blur)="validateValue('logo')" type="text" formControlName="logo"/></div>
         </div>
         <div class="row">
-          <div class="col"><label>Fecha Libración</label><input (change)="validateValue('dateinit')" (blur)="validateValue('dateinit')" min="{{minDate | date:'yyyy-MM-dd'}}" id="dateinit" type="date" formControlName="dateinit"/>
+          <div class="col"><label>Fecha Libración</label><input (change)="validateValue('date_release')" (blur)="validateValue('date_release')" min="{{minDate | date:'yyyy-MM-dd'}}" id="date_release" type="date" formControlName="date_release"/>
           </div>
-          <div class="col"><label>Fecha Revisión</label><input (blur)="validateValue('dateEnd')"   id="dateEnd" type="date" formControlName="dateEnd"/>
+          <div class="col"><label>Fecha Revisión</label><input (blur)="validateValue('date_revision')"   id="date_revision" type="date" formControlName="date_revision"/>
           </div>
         </div>
         <div class="groupActions">

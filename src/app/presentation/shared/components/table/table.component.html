@@ -8,45 +8,23 @@
     <table style="padding: 20px">
       <thead>
       <tr>
-        <th>Logo</th>
-        <th>Nombre del producto</th>
-        <th>
-          <div class="contentTable">Descripción
-            <div class="icon"></div>
-          </div>
-        </th>
-        <th>
-          <div class="contentTable">Fecha de liberación
-            <div class="icon"></div>
-          </div>
-        </th>
-        <th>
-          <div class="contentTable">Fecha de reestructuración
-            <div class="icon"></div>
-          </div>
-        </th>
-        <th>
+        <th *ngFor="let colum of tableData.columns">{{colum.title}}</th>
+        <th *ngIf="tableData.actions">
           <div class="contentTable">Acciones</div>
         </th>
       </tr>
       </thead>
       <tbody>
-
-      <tr>
-        <td><img [src]="assetRoutes + 'profile-circle-svgrepo-com.svg'" height="40px"/></td>
-        <td>asdasda ad asas</td>
-        <td>asdasda ad asas</td>
-        <td>asdasda ad asas</td>
-        <td>asdasda ad asas</td>
-        <td>
-          <app-table-options [id]="1"></app-table-options>
+      <tr *ngFor="let row of tableData.rows; let i = index" [id]="'tableContent'+i">
+        <td *ngFor="let item of tableData.columns" [innerHTML]="valueData(item, i)"></td>
+        <td *ngIf="tableData.actions">
+          <app-table-options (deleteActions)="deleteActions($event)" (addActions)="addActions($event)" [id]="row.id"></app-table-options>
         </td>
       </tr>
-
       </tbody>
     </table>
     <div class="pagination">
-      5 Resultados
+      {{tableData.rows.length}} Resultados
       <select>
         <option>1</option>
         <option>2</option>

@@ -19,15 +19,33 @@ export const SendRequest = async <T>(
   const axiosRequest = axios.create(httpOptions)
   try {
     if (props.get) {
-      response = axiosRequest.get(environment.apiUrl + props.get.path);
+      const r: any  = await axiosRequest.get(environment.apiUrl + props.get.path);
+      response = r?.data || r
     }
     if (props.post) {
-      response = axiosRequest.post(environment.apiUrl + props.post.path, props.post.body);
+      const r: any = await axiosRequest.post(environment.apiUrl + props.post.path, props.post.body);
+      response = r?.data || r
+    }
+    if (props.put) {
+      const r: any = await axiosRequest.put(environment.apiUrl + props.put.path, props.put.body);
+      response = r?.data || r
     }
   } catch (e) {
     response = e
   }
-  return response
+  return makeResponse<T>(response)
+}
+
+export const makeResponse = <T>(response: any): ApiResponse<T> => {
+  const result: ApiResponse<T> = {
+    data:
+      response.data === ''
+        ? null
+        : response.data != null && typeof response.data != 'undefined'
+          ? response.data
+          : response
+  }
+  return result
 }
 
 

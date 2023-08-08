@@ -6,6 +6,7 @@ import {RegisterComponent} from "./presentation/modules/register/register.compon
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'registro', component: RegisterComponent },
+  { path: 'registro/editar', component: RegisterComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

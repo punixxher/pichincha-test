@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
+import {GlobalService} from "./presentation/shared/services/global.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pichincha-test';
+
+  constructor(private router: Router, private globalService: GlobalService) {
+
+  }
 }
